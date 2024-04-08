@@ -1,17 +1,25 @@
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter an integer: ");
-        int number = scanner.nextInt();
+        Student student = StudentTest.getExampleStudent();
+        List<Double> grades = Arrays.asList(2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0);
+        student.grades = grades;
+        System.out.println(student.getGradesAverage());
+        System.out.println(student.getGradesAverageNearest());
 
-        if (number > 0) {
-            System.out.println("The number is positive.");
-        } else if (number < 0) {
-            System.out.println("The number is negative.");
-        } else {
-            System.out.println("The value equals 0.");
+        Teacher teacher = TeacherTest.getExampleTeacher();
+        List<Integer> rates = Arrays.asList(100, 200, 100);
+        for (int rate : rates) {
+            Subject subject = TeacherTest.getExampleSubject();
+            subject.rate = rate;
+            teacher.addSubject(subject);
         }
+        Subject lecture = TeacherTest.getExampleSubject();
+        lecture.type = "lecture";
+        lecture.rate = 100;
+        teacher.subjects.add(lecture);
+        System.out.println(teacher.calculateSalary());
     }
 }
